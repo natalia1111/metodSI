@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Методические рекомендации по организации НИР студентов факультета естествознания БГПУ</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#f0f2f5;--surface:#ffffff;--ink:#111827;--muted:#6b7280;--border:#e5e7eb;
+  --c1:#1d4ed8;--c1l:#dbeafe;
+  --c2:#059669;--c2l:#d1fae5;
+  --c3:#dc2626;--c3l:#fee2e2;
+  --c4:#7c3aed;--c4l:#ede9fe;
+  --c5:#d97706;--c5l:#fef3c7;
+  --radius:14px;
+  --shadow:0 2px 12px rgba(0,0,0,.07);
+  --shadow-lg:0 8px 32px rgba(0,0,0,.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.65}
+
+/* HERO */
+.hero{background:var(--ink);color:#fff;padding:64px 32px 52px;position:relative;overflow:hidden}
+.hero::after{content:'STEAM';position:absolute;right:-24px;top:-28px;font-size:200px;font-weight:800;color:rgba(255,255,255,.03);line-height:1;pointer-events:none;user-select:none}
+.hero-inner{max-width:980px;margin:0 auto;position:relative;z-index:1}
+.hero-tag{display:inline-flex;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:100px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;margin-bottom:24px;color:rgba(255,255,255,.75)}
+.hero h1{font-size:clamp(24px,3.5vw,46px);font-weight:800;line-height:1.15;margin-bottom:12px}
+.hero h1 em{font-style:normal;color:#facc15}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.55);max-width:560px;font-weight:400;margin-bottom:36px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:8px 16px;font-size:12px;font-weight:600;color:rgba(255,255,255,.8)}
+
+/* TABS */
+.tabs-wrap{max-width:980px;margin:0 auto;padding:28px 20px 0}
+.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+@media(max-width:700px){.tabs{grid-template-columns:1fr 1fr}}
+.tab-btn{background:var(--surface);border:2px solid transparent;border-radius:var(--radius);padding:16px 12px;cursor:pointer;text-align:left;transition:all .18s ease;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
+.tab-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.tab-btn.active{border-color:var(--tc)!important;background:var(--tl)!important}
+.tab-icon{font-size:22px;line-height:1}
+.tab-num{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;color:var(--muted);letter-spacing:.1em}
+.tab-label{font-size:12px;font-weight:700;line-height:1.3;color:var(--ink)}
+.tab-btn.active .tab-label{color:var(--tc)}
+
+/* PANELS */
+.panels{max-width:980px;margin:0 auto;padding:20px 20px 80px}
+.panel{display:none;animation:fadeIn .3s ease}
+.panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* PANEL HEADER */
+.panel-header{background:var(--surface);border-radius:var(--radius);padding:28px 28px 24px;margin-bottom:16px;border-left:4px solid var(--pc);box-shadow:var(--shadow);display:flex;align-items:flex-start;gap:18px}
+.ph-icon{font-size:32px;line-height:1;background:var(--pl);border-radius:10px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ph-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.ph-title{font-size:22px;font-weight:800;color:var(--ink);margin-bottom:4px}
+.ph-aim{font-size:13px;color:var(--muted);font-weight:400;max-width:640px}
+
+/* TILES */
+.tile-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:16px}
+.tile{background:var(--surface);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s}
+.tile:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.tile-tag{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pc);margin-bottom:10px;font-family:'JetBrains Mono',monospace}
+.tile h4{font-size:15px;font-weight:700;margin-bottom:7px;line-height:1.3}
+.tile p{font-size:13px;color:#4b5563;line-height:1.6}
+
+/* ALGO */
+.algo-tile{background:var(--ink);color:#fff;border-radius:var(--radius);padding:28px;margin-bottom:16px;box-shadow:var(--shadow-lg)}
+.algo-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#facc15;margin-bottom:18px}
+.algo-steps{list-style:none;display:grid;gap:9px}
+.algo-step{display:flex;gap:14px;align-items:flex-start}
+.algo-n{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(250,204,21,.15);color:#facc15;padding:2px 8px;flex-shrink:0;margin-top:2px;border-radius:4px}
+.algo-t{font-size:13.5px;color:rgba(255,255,255,.85);line-height:1.55}
+.algo-t strong{color:#facc15}
+
+/* HYPO */
+.hypo-tile{background:var(--surface);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);display:flex;gap:14px;align-items:flex-start;margin-bottom:10px}
+.hypo-em{font-size:20px;flex-shrink:0;margin-top:2px}
+.hypo-q{font-size:14px;font-style:italic;color:#1f2937;line-height:1.6;font-weight:500}
+.hypo-src{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:5px}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+@media(max-width:560px){.two-col{grid-template-columns:1fr}}
+.info-tile{background:var(--surface);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.info-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.info-tile ul{list-style:none;display:grid;gap:6px}
+.info-tile li{font-size:13px;color:#374151;padding-left:16px;position:relative;line-height:1.5}
+.info-tile li::before{content:'·';position:absolute;left:0;color:var(--pc);font-size:20px;line-height:.9;top:1px}
+
+/* EXAMPLES */
+.ex-tile{background:var(--surface);border-radius:var(--radius);padding:20px 22px;margin-bottom:16px;box-shadow:var(--shadow);border-left:3px solid var(--pc)}
+.ex-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--pc);font-family:'JetBrains Mono',monospace;margin-bottom:12px}
+.ex-list{list-style:none;display:grid;gap:8px}
+.ex-item{font-size:13.5px;color:#374151;padding-left:20px;position:relative;line-height:1.55}
+.ex-item::before{content:'→';position:absolute;left:0;font-family:'JetBrains Mono',monospace;color:var(--pc)}
+
+/* CALLOUT */
+.callout{color:#fff;border-radius:var(--radius);padding:22px 26px;margin-bottom:16px;font-size:14px;line-height:1.7}
+.callout strong{color:#facc15}
+
+/* TABLE */
+.table-wrap{overflow-x:auto;margin-bottom:16px}
+.rubric{width:100%;border-collapse:collapse;font-size:12.5px;background:var(--surface);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.rubric th{background:var(--ink);color:#facc15;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.07em;padding:12px 13px;text-align:left;font-weight:500}
+.rubric td{padding:10px 13px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5}
+.rubric tr:last-child td{border-bottom:none}
+.rubric td:first-child{font-weight:700;white-space:nowrap;color:var(--ink)}
+.rubric tr:nth-child(even) td{background:#f9fafb}
+
+/* CHECKLIST */
+.checklist{list-style:none;display:grid;gap:8px;margin-bottom:16px}
+.cl-item{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border-radius:10px;padding:12px 16px;box-shadow:var(--shadow);font-size:13.5px}
+.cl-box{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:700}
+
+.gap{margin-bottom:16px}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:12px;margin-top:4px;display:block}
+
+footer{background:var(--ink);color:rgba(255,255,255,.45);text-align:center;padding:32px 20px;font-size:12px}
+footer strong{color:#facc15}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">БГПУ · Факультет естествознания</div>
+    <h1>Методические рекомендации<br>по организации <em>научно-исследовательской<br>работы студентов</em> факультета естествознания БГПУ</h1>
+    <p class="hero-sub">Пятимодульный конструктор для проектирования НИР на основе STEAM-подхода</p>
+    <div class="hero-chips">
+      <span class="chip">🔬 Исследовательский</span>
+      <span class="chip">ℹ️ Информационный</span>
+      <span class="chip">📖 Сценарный</span>
+      <span class="chip">⚙️ Технологический</span>
+      <span class="chip">📝 Диагностический</span>
+    </div>
+  </div>
+</header>
+
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab-btn active" id="tb0" onclick="show(0)">
+      <span class="tab-icon">🔬</span>
+      <span class="tab-num">01 / модуль</span>
+      <span class="tab-label">Исследовательский</span>
+    </button>
+    <button class="tab-btn" id="tb1" onclick="show(1)">
+      <span class="tab-icon">ℹ️</span>
+      <span class="tab-num">02 / модуль</span>
+      <span class="tab-label">Информационный</span>
+    </button>
+    <button class="tab-btn" id="tb2" onclick="show(2)">
+      <span class="tab-icon">📖</span>
+      <span class="tab-num">03 / модуль</span>
+      <span class="tab-label">Сценарный</span>
+    </button>
+    <button class="tab-btn" id="tb3" onclick="show(3)">
+      <span class="tab-icon">⚙️</span>
+      <span class="tab-num">04 / модуль</span>
+      <span class="tab-label">Технологический</span>
+    </button>
+    <button class="tab-btn" id="tb4" onclick="show(4)">
+      <span class="tab-icon">📝</span>
+      <span class="tab-num">05 / модуль</span>
+      <span class="tab-label">Диагностический</span>
+    </button>
+  </div>
+</div>
+
+<div class="panels">
+
+  <!-- PANEL 1 -->
+  <div class="panel active" id="p0" style="--pc:var(--c1);--pl:var(--c1l)">
+    <div class="panel-header" style="border-left-color:var(--c1)">
+      <div class="ph-icon" style="background:var(--c1l)">🔬</div>
+      <div>
+        <div class="ph-num">01 / исследовательский модуль</div>
+        <div class="ph-title">Исследовательский модуль</div>
+        <div class="ph-aim">Цель: сформировать у студентов понимание научного подхода и алгоритма проектной деятельности</div>
+      </div>
+    </div>
+
+    <div class="tile-grid">
+      <div class="tile"><div class="tile-tag">Компетенция</div><h4>Постановка проблемы</h4><p>Студент учится чётко формулировать противоречие, из которого вытекает научная проблема исследования.</p></div>
+      <div class="tile"><div class="tile-tag">Компетенция</div><h4>Гипотеза и методика</h4><p>Выдвижение проверяемых гипотез, выбор независимых и зависимых переменных, планирование контроля.</p></div>
+      <div class="tile"><div class="tile-tag">Компетенция</div><h4>Анализ данных</h4><p>Сбор результатов, статистическая обработка, построение графиков и формулировка обоснованных выводов.</p></div>
+      <div class="tile"><div class="tile-tag">Метод</div><h4>Наблюдение и эксперимент</h4><p>Натурные и лабораторные опыты, полевые исследования, сравнительный анализ биологических объектов.</p></div>
+      <div class="tile"><div class="tile-tag">Метод</div><h4>Моделирование</h4><p>Компьютерное и физическое моделирование процессов: от клеточных автоматов до прототипов устройств.</p></div>
+      <div class="tile"><div class="tile-tag">Метод</div><h4>Статистический анализ</h4><p>Применение критериев значимости (t-критерий, G-критерий), расчёт погрешностей, работа с Logger Pro.</p></div>
+    </div>
+
+    <div class="algo-tile">
+      <div class="algo-label">Алгоритм проектирования учебно-исследовательской деятельности</div>
+      <ol class="algo-steps">
+        <li class="algo-step"><span class="algo-n">01</span><span class="algo-t">Выбор <strong>объекта и предмета</strong> исследования из актуальных STEAM-тематик</span></li>
+        <li class="algo-step"><span class="algo-n">02</span><span class="algo-t">Постановка <strong>проблемы</strong> и формулировка темы исследования</span></li>
+        <li class="algo-step"><span class="algo-n">03</span><span class="algo-t">Обоснование <strong>актуальности</strong> — описание необходимости изучения проблемы</span></li>
+        <li class="algo-step"><span class="algo-n">04</span><span class="algo-t">Выдвижение <strong>гипотезы</strong> — проверяемого предположения о результате</span></li>
+        <li class="algo-step"><span class="algo-n">05</span><span class="algo-t">Определение <strong>цели, задач и методов</strong> исследования</span></li>
+        <li class="algo-step"><span class="algo-n">06</span><span class="algo-t">Планирование: выделение <strong>независимой / зависимой / фиксированных</strong> переменных</span></li>
+        <li class="algo-step"><span class="algo-n">07</span><span class="algo-t">Проведение <strong>исследования</strong> и фиксация результатов</span></li>
+        <li class="algo-step"><span class="algo-n">08</span><span class="algo-t">Обработка данных, построение графиков, вычисление <strong>погрешностей</strong></span></li>
+        <li class="algo-step"><span class="algo-n">09</span><span class="algo-t">Формулировка <strong>выводов</strong>, анализ ошибок, предложения по улучшению методики</span></li>
+      </ol>
+    </div>
+
+    <span class="sec-label">Примеры гипотез для факультета естествознания</span>
+    <div class="hypo-tile"><div class="hypo-em">🌱</div><div><div class="hypo-q">«Если добавить биоуголь в почву с дефицитом питательных веществ, то урожайность тест-культуры увеличится не менее чем на 10% по сравнению с контрольной группой»</div><div class="hypo-src">Тематика: экология и агробиология</div></div></div>
+    <div class="hypo-tile"><div class="hypo-em">🦋</div><div><div class="hypo-q">«Если форма листьев папоротника фрактальна, то её можно смоделировать с помощью L-системы и верифицировать через анализ фрактальной размерности»</div><div class="hypo-src">Тематика: биомиметика и цифровое моделирование</div></div></div>
+    <div class="hypo-tile"><div class="hypo-em">💧</div><div><div class="hypo-q">«Концентрация растворённого кислорода в водоёмах городской черты статистически значимо ниже, чем в загородных водоёмах той же климатической зоны»</div><div class="hypo-src">Тематика: экологический мониторинг</div></div></div>
+    <div class="hypo-tile"><div class="hypo-em">⚡</div><div><div class="hypo-q">«Оптимизация алгоритма управления автономным роботом снизит потребление энергии на 15% при сохранении точности навигации»</div><div class="hypo-src">Тематика: образовательная робототехника</div></div></div>
+
+    <div class="gap"></div>
+    <div class="ex-tile">
+      <div class="ex-label">Примерные темы для мини-проектов (4–6 недель)</div>
+      <ul class="ex-list">
+        <li class="ex-item">Зависимость скорости фотосинтеза от интенсивности освещения (биология + физика + математика)</li>
+        <li class="ex-item">3D-моделирование анатомических структур и их биомеханический анализ (биология + технологии + искусство)</li>
+        <li class="ex-item">Визуализация природных паттернов: спирали Фибоначчи в биологических объектах</li>
+        <li class="ex-item">Мониторинг качества почвы с использованием датчиков и статистического анализа данных</li>
+        <li class="ex-item">Разработка устройства для измерения уровня загрязнения воздуха</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PANEL 2 -->
+  <div class="panel" id="p1" style="--pc:var(--c2);--pl:var(--c2l)">
+    <div class="panel-header" style="border-left-color:var(--c2)">
+      <div class="ph-icon" style="background:var(--c2l)">ℹ️</div>
+      <div>
+        <div class="ph-num">02 / информационный модуль</div>
+        <div class="ph-title">Информационный модуль</div>
+        <div class="ph-aim">Цель: обеспечить доступ к проверенным теоретическим источникам, научным базам данных и образовательным платформам</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="info-tile"><div class="info-title">🌐 Международные ресурсы</div><ul><li>ScienceDirect — полнотекстовые статьи Elsevier</li><li>https://globallab.ru/ru/landing-page/main_ru</li><li>https://www.teachengineering.org/</li><li>https://www.stem.org.uk/</li></ul></div>
+      <div class="info-tile"><div class="info-title">🔍 Базы данных</div><ul><li>Google Scholar — научный поиск</li><li>eLibrary.ru — российские публикации (НЭБ)</li><li>CyberLeninka — открытый доступ к статьям</li><li>Web of Science — цитирование и импакт</li><li>Scopus — реферативная база данных</li></ul></div>
+      <div class="info-tile"><div class="info-title">🇧🇾 Белорусские ресурсы</div><ul><li>Репозиторий БГПУ</li><li>Платформа «Школьная инициатива»</li><li>Национальная электронная библиотека</li><li>Журнал «Народная асвета»</li></ul></div>
+      <div class="info-tile"><div class="info-title">🎓 Онлайн-обучение</div><ul><li>Coursera / edX — курсы ведущих университетов</li><li>Stepik — российские STEM-курсы</li><li>Khan Academy — базовые дисциплины</li><li>MIT OpenCourseWare — открытые лекции</li><li>YouTube: каналы TED-Ed, Veritasium</li></ul></div>
+    </div>
+
+    <span class="sec-label">Рекомендуемая литература по STEAM-образованию</span>
+    <div class="tile-grid">
+      <div class="tile"><div class="tile-tag">Монография · 2022</div><h4>Сабирова Ф.М., Анисимова Т.И.</h4><p>Теория и практика реализации STEAM-образования. — Казань: РИЦ «Школа», 2022. — 108 с.</p></div>
+      <div class="tile"><div class="tile-tag">Монография · 2022</div><h4>Медведева Т.</h4><p>Хочу учиться! Вызываем интерес к учёбе по методу STEAM. — М.: Альпина Паблишер, 2022. — 222 с.</p></div>
+      <div class="tile"><div class="tile-tag">Сборник · 2021</div><h4>STEAMS практики в образовании</h4><p>Ч. 1–2 / сост. Зенов Е.К., Зенкова О.В. — М.: Перо, 2021. Доступно в eLibrary.ru</p></div>
+      <div class="tile"><div class="tile-tag">Статья · 2020</div><h4>Сологуб Н.С., Аршанский Е.Я.</h4><p>STEAM-образование: сущность и анализ идеи в исторической ретроспективе // Вестник БГПУ. Серия 1. — 2020. — № 2(104). — С. 15–18.</p></div>
+      <div class="tile"><div class="tile-tag">Статья · 2020</div><h4>Обухов А.С., Ловягин С.А.</h4><p>Задания для практики STEM-образования: от частных задач к целостному деятельностному подходу // Исследователь. — 2020. — № 2(30). — С. 63–82.</p></div>
+      <div class="tile"><div class="tile-tag">Статья · 2020</div><h4>Грязнов С.А.</h4><p>STEAM-образование: подход к обучению в 21 веке // Экономика образования. — 2020. — № 6(121). — С. 57–65.</p></div>
+      <div class="tile"><div class="tile-tag">Статья · 2020</div><h4>Дорофеева А.С.</h4><p>Анализ развития STEAM-образования в России и за рубежом // Известия Балтийской государственной академии. — 2020. — № 4(54). — С. 236–242.</p></div>
+      <div class="tile"><div class="tile-tag">Статья · 2019</div><h4>Шатунова О.В., Иванов С.В.</h4><p>STEM и STEAM-образование в современной школе // Вопросы педагогики. — 2019. — № 6-2. — С. 147–150.</p></div>
+      <div class="tile"><div class="tile-tag">Статья · 2018</div><h4>Конюшенко С.М., Жукова М.С., Мошева Е.А.</h4><p>STEM VS STEAM: изменение понимания того, как учить // Известия Балтийской государственной академии. — 2018. — № 2(44). — С. 99–103.</p></div>
+      <div class="tile"><div class="tile-tag">Статья · 2018</div><h4>Анисимова Т.И., Шатунова О.В., Сабирова Ф.М.</h4><p>STEAM-образование как инновационная технология для индустрии 4.0 // Научный диалог. — 2018. — № 11. — С. 322–332.</p></div>
+    </div>
+
+    <div class="callout" style="background:var(--c2)">
+      При работе с источниками рекомендуется формировать <strong>аннотированный библиографический список</strong>: для каждого источника указывать краткое содержание (2–3 предложения), уровень сложности и рекомендуемый этап использования в проекте.
+    </div>
+  </div>
+
+  <!-- PANEL 3 -->
+  <div class="panel" id="p2" style="--pc:var(--c3);--pl:var(--c3l)">
+    <div class="panel-header" style="border-left-color:var(--c3)">
+      <div class="ph-icon" style="background:var(--c3l)">📖</div>
+      <div>
+        <div class="ph-num">03 / сценарный модуль</div>
+        <div class="ph-title">Сценарный модуль</div>
+        <div class="ph-aim">Цель: предоставить алгоритм конструирования образовательных STEAM-продуктов и готовые методические карты для организации НИР студентов</div>
+      </div>
+    </div>
+
+    <!-- BLOCK A: ALGORITHM -->
+    <span class="sec-label">Алгоритм конструирования образовательного STEAM-продукта</span>
+    <div class="algo-tile">
+      <div class="algo-label">Универсальный алгоритм — 6 шагов</div>
+      <ol class="algo-steps">
+        <li class="algo-step"><span class="algo-n">01</span><span class="algo-t"><strong>Проблема:</strong> выявление реального противоречия — в природной, социальной или научной среде. Формулируется в виде открытого вопроса или парадокса</span></li>
+        <li class="algo-step"><span class="algo-n">02</span><span class="algo-t"><strong>Идея:</strong> генерация вариантов решения — мозговой штурм, дизайн-мышление, ТРИЗ. Выбор наиболее продуктивной идеи</span></li>
+        <li class="algo-step"><span class="algo-n">03</span><span class="algo-t"><strong>Исследование:</strong> работа с теоретическими источниками, уточнение гипотезы, выбор методологии и оборудования</span></li>
+        <li class="algo-step"><span class="algo-n">04</span><span class="algo-t"><strong>Прототип:</strong> создание первого рабочего варианта продукта, модели или установки; при необходимости — повторные итерации</span></li>
+        <li class="algo-step"><span class="algo-n">05</span><span class="algo-t"><strong>Тестирование:</strong> эмпирическая проверка, сбор и анализ данных, доработка на основе обратной связи</span></li>
+        <li class="algo-step"><span class="algo-n">06</span><span class="algo-t"><strong>Презентация:</strong> публичная защита и визуализация результатов в выбранном формате (постер, видео, прототип, статья)</span></li>
+      </ol>
+    </div>
+
+    <!-- BLOCK B: METHODICAL CARD CONSTRUCTOR -->
+    <span class="sec-label">Конструктор методической карты STEAM-занятия</span>
+    <div style="background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 26px;margin-bottom:16px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+
+        <div style="border:1px solid var(--border);border-radius:10px;padding:16px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c3);font-family:'JetBrains Mono',monospace;margin-bottom:10px;">🎯 Паспорт занятия</div>
+          <ul style="list-style:none;display:grid;gap:6px;font-size:13px;color:#374151;">
+            <li style="display:flex;gap:8px;"><span style="color:var(--c3);font-weight:700;min-width:90px;">Тема:</span><span>название, отражающее проблему или феномен</span></li>
+            <li style="display:flex;gap:8px;"><span style="color:var(--c3);font-weight:700;min-width:90px;">Цель:</span><span>формулируется через результат освоения</span></li>
+            <li style="display:flex;gap:8px;"><span style="color:var(--c3);font-weight:700;min-width:90px;">Возраст:</span><span>целевая группа студентов / школьников</span></li>
+            <li style="display:flex;gap:8px;"><span style="color:var(--c3);font-weight:700;min-width:90px;">Время:</span><span>продолжительность (стандарт — 60 мин)</span></li>
+            <li style="display:flex;gap:8px;"><span style="color:var(--c3);font-weight:700;min-width:90px;">Уровень:</span><span>базовый / продвинутый / исследовательский</span></li>
+          </ul>
+        </div>
+
+        <div style="border:1px solid var(--border);border-radius:10px;padding:16px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c3);font-family:'JetBrains Mono',monospace;margin-bottom:10px;">🧩 STEAM-матрица</div>
+          <p style="font-size:13px;color:#374151;margin-bottom:10px;">Для каждого тематического блока занятия отмечается принадлежность к компонентам STEAM:</p>
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;text-align:center;">
+            <div style="background:var(--c3l);border-radius:6px;padding:6px 4px;font-size:11px;font-weight:700;color:var(--c3);">S</div>
+            <div style="background:#ede9fe;border-radius:6px;padding:6px 4px;font-size:11px;font-weight:700;color:#7c3aed;">T</div>
+            <div style="background:#d1fae5;border-radius:6px;padding:6px 4px;font-size:11px;font-weight:700;color:#059669;">E</div>
+            <div style="background:#fef3c7;border-radius:6px;padding:6px 4px;font-size:11px;font-weight:700;color:#d97706;">A</div>
+            <div style="background:#dbeafe;border-radius:6px;padding:6px 4px;font-size:11px;font-weight:700;color:#1d4ed8;">M</div>
+          </div>
+          <p style="font-size:12px;color:var(--muted);margin-top:8px;">Каждый тематический блок помечается «+» в соответствующих столбцах матрицы</p>
+        </div>
+
+        <div style="border:1px solid var(--border);border-radius:10px;padding:16px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c3);font-family:'JetBrains Mono',monospace;margin-bottom:10px;">🏆 Компетенции XXI века</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;font-size:12px;color:#374151;">
+            <div style="display:flex;align-items:center;gap:6px;"><span style="width:16px;height:16px;border:2px solid var(--c3);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--c3);font-weight:700;">✓</span>Критическое мышление</div>
+            <div style="display:flex;align-items:center;gap:6px;"><span style="width:16px;height:16px;border:2px solid var(--c3);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--c3);font-weight:700;">✓</span>Системное мышление</div>
+            <div style="display:flex;align-items:center;gap:6px;"><span style="width:16px;height:16px;border:2px solid #d1d5db;border-radius:3px;"></span>Креативность</div>
+            <div style="display:flex;align-items:center;gap:6px;"><span style="width:16px;height:16px;border:2px solid var(--c3);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--c3);font-weight:700;">✓</span>Коммуникация</div>
+            <div style="display:flex;align-items:center;gap:6px;"><span style="width:16px;height:16px;border:2px solid #d1d5db;border-radius:3px;"></span>Командная работа</div>
+            <div style="display:flex;align-items:center;gap:6px;"><span style="width:16px;height:16px;border:2px solid var(--c3);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--c3);font-weight:700;">✓</span>Исследовательская</div>
+          </div>
+          <p style="font-size:11px;color:var(--muted);margin-top:8px;">В каждой методической карте отмечаются актуальные компетенции</p>
+        </div>
+
+        <div style="border:1px solid var(--border);border-radius:10px;padding:16px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c3);font-family:'JetBrains Mono',monospace;margin-bottom:10px;">🔬 Материалы и оборудование</div>
+          <ul style="list-style:none;display:grid;gap:5px;font-size:13px;color:#374151;">
+            <li style="padding-left:14px;position:relative;">
+              <span style="position:absolute;left:0;color:var(--c3);">·</span>
+              Лабораторное и измерительное оборудование</li>
+            <li style="padding-left:14px;position:relative;">
+              <span style="position:absolute;left:0;color:var(--c3);">·</span>
+              Цифровые инструменты и платформы</li>
+            <li style="padding-left:14px;position:relative;">
+              <span style="position:absolute;left:0;color:var(--c3);">·</span>
+              Мультимедийная презентация (слайды)</li>
+            <li style="padding-left:14px;position:relative;">
+              <span style="position:absolute;left:0;color:var(--c3);">·</span>
+              Раздаточные материалы, рабочие листы</li>
+            <li style="padding-left:14px;position:relative;">
+              <span style="position:absolute;left:0;color:var(--c3);">·</span>
+              Теоретические источники для групповой работы</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK C: LESSON STRUCTURE -->
+    <span class="sec-label">Структура занятия — обязательные этапы</span>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:16px;">
+      <div style="background:var(--c3l);border-radius:var(--radius);padding:16px 18px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--c3);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;">01 · Актуализация</div>
+        <div style="font-size:13px;color:#374151;line-height:1.5;">Мотивирующий вход в тему: провокационный вопрос, парадокс, видеофрагмент. Связь с личным опытом студентов.</div>
+      </div>
+      <div style="background:#fff0f0;border-radius:var(--radius);padding:16px 18px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--c3);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;">02 · Мотивация</div>
+        <div style="font-size:13px;color:#374151;line-height:1.5;">Демонстрация феномена, видео или кейса. Постановка проблемного вопроса, запускающего исследование.</div>
+      </div>
+      <div style="background:#fef9ee;border-radius:var(--radius);padding:16px 18px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--c3);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;">03 · Основная часть</div>
+        <div style="font-size:13px;color:#374151;line-height:1.5;">Изучение теоретического материала в интерактивной форме. Беседа, мини-лекция, работа с источниками.</div>
+      </div>
+      <div style="background:#f0f9ff;border-radius:var(--radius);padding:16px 18px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--c3);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;">04 · Эксперимент</div>
+        <div style="font-size:13px;color:#374151;line-height:1.5;">Практическая часть: лабораторная работа, измерения, построение графиков, анализ данных с ph-метром или другими приборами.</div>
+      </div>
+      <div style="background:#f0fdf4;border-radius:var(--radius);padding:16px 18px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--c3);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;">05 · Проблемный вопрос</div>
+        <div style="font-size:13px;color:#374151;line-height:1.5;">Групповая работа с теоретическими источниками. Поиск подтверждения или опровержения тезисов, дискуссия.</div>
+      </div>
+      <div style="background:#fdf4ff;border-radius:var(--radius);padding:16px 18px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--c3);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;">06 · Рефлексия</div>
+        <div style="font-size:13px;color:#374151;line-height:1.5;">«Лакмусовая бумажка»: студенты фиксируют, что узнали, что удивило, что хотят исследовать дальше.</div>
+      </div>
+    </div>
+
+    <!-- BLOCK D: CARD EXAMPLES -->
+    <span class="sec-label">Примеры методических карт STEAM-проектов</span>
+    <div class="tile-grid">
+      <div class="tile">
+        <div class="tile-tag">S · T · A · M — Химия + Экология</div>
+        <h4>«Философия воды»</h4>
+        <p>Тема: уникальность и значение воды через синтез химии, экологии, философии и биологии. Эксперимент: определение pH питьевых жидкостей. Проблемный вопрос: может ли организм самостоятельно регулировать кислотно-щелочной баланс?</p>
+      </div>
+      <div class="tile">
+        <div class="tile-tag">S · T · M — Биология + Математика</div>
+        <h4>«Живой счётчик»</h4>
+        <p>Подсчёт численности популяции методом маркировки-повторного отлова (метод Петерсона). Математическая обработка данных, оценка точности метода, вывод о состоянии экосистемы.</p>
+      </div>
+      <div class="tile">
+        <div class="tile-tag">S · E · M — Физика + Биология</div>
+        <h4>«Биофизика движения»</h4>
+        <p>Исследование биомеханики: угол и сила прыжка кузнечика, скорость реакции у разных организмов. Построение математической модели. Сравнение с инженерными решениями в робототехнике.</p>
+      </div>
+      <div class="tile">
+        <div class="tile-tag">S · T · A — Экология + Искусство</div>
+        <h4>«Карта экологических рисков»</h4>
+        <p>Студенты исследуют экологическое состояние территории, создают цифровую инфографику и визуальный постер с предложениями по улучшению. ЦУР ООН как контекст.</p>
+      </div>
+      <div class="tile">
+        <div class="tile-tag">S · E · M — Химия + Математика</div>
+        <h4>«pH-диета»</h4>
+        <p>Измерение кислотности пищевых продуктов и напитков. Расчёт среднего pH суточного рациона. Анализ соответствия норме СанПин. Критическая оценка маркетинга «щелочного питания».</p>
+      </div>
+      <div class="tile">
+        <div class="tile-tag">S · T · E · A · M — Полный STEAM</div>
+        <h4>«Умный сад»</h4>
+        <p>Проектирование автоматизированной системы полива с датчиками влажности и температуры. Сборка, программирование, дизайн интерфейса. 6 занятий с контрольными точками.</p>
+      </div>
+    </div>
+
+    <!-- BLOCK E: STEAM TABLE EXAMPLE -->
+    <span class="sec-label">Шаблон STEAM-матрицы для методической карты</span>
+    <div class="table-wrap" style="margin-bottom:16px;">
+      <table class="rubric">
+        <thead>
+          <tr><th>Тематический блок занятия</th><th style="text-align:center;">S · Естественные науки</th><th style="text-align:center;">T · Технология</th><th style="text-align:center;">E · Инженерия</th><th style="text-align:center;">A · Искусство</th><th style="text-align:center;">M · Математика</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Понятие эмерджентности / феномена</td><td style="text-align:center;color:var(--c3);font-weight:700;">+</td><td></td><td style="text-align:center;color:var(--c3);font-weight:700;">+</td><td></td><td></td></tr>
+          <tr><td>Теоретическая часть (мини-лекция)</td><td style="text-align:center;color:var(--c3);font-weight:700;">+</td><td></td><td></td><td></td><td style="text-align:center;color:var(--c3);font-weight:700;">+</td></tr>
+          <tr><td>Лабораторный эксперимент</td><td style="text-align:center;color:var(--c3);font-weight:700;">+</td><td style="text-align:center;color:var(--c3);font-weight:700;">+</td><td></td><td></td><td style="text-align:center;color:var(--c3);font-weight:700;">+</td></tr>
+          <tr><td>Работа с теоретическими источниками</td><td style="text-align:center;color:var(--c3);font-weight:700;">+</td><td style="text-align:center;color:var(--c3);font-weight:700;">+</td><td></td><td style="text-align:center;color:var(--c3);font-weight:700;">+</td><td></td></tr>
+          <tr><td>Создание визуального продукта / постера</td><td></td><td style="text-align:center;color:var(--c3);font-weight:700;">+</td><td></td><td style="text-align:center;color:var(--c3);font-weight:700;">+</td><td></td></tr>
+          <tr><td>Проблемная дискуссия / групповая работа</td><td style="text-align:center;color:var(--c3);font-weight:700;">+</td><td></td><td></td><td style="text-align:center;color:var(--c3);font-weight:700;">+</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="two-col">
+      <div class="info-tile"><div class="info-title">🎨 Форматы итоговых продуктов</div><ul><li>Научная статья / тезисы доклада</li><li>Инфографика / научный постер</li><li>Видеоролик / подкаст об открытии</li><li>Интерактивная компьютерная модель</li><li>Физический прототип / макет</li><li>Цифровая карта / дашборд данных</li></ul></div>
+      <div class="info-tile"><div class="info-title">⚖️ Дифференциация и роли в команде</div><ul><li>Три уровня сложности: базовый, продвинутый, исследовательский</li><li>Роль «Исследователь» — гипотеза и методика</li><li>Роль «Инженер» — установка и измерения</li><li>Роль «Дизайнер» — визуализация результатов</li><li>Роль «Презентатор» — публичная защита</li></ul></div>
+    </div>
+  </div>
+
+  <!-- PANEL 4 -->
+  <div class="panel" id="p3" style="--pc:var(--c4);--pl:var(--c4l)">
+    <div class="panel-header" style="border-left-color:var(--c4)">
+      <div class="ph-icon" style="background:var(--c4l)">⚙️</div>
+      <div>
+        <div class="ph-num">04 / технологический модуль</div>
+        <div class="ph-title">Технологический модуль</div>
+        <div class="ph-aim">Цель: обеспечить методическое сопровождение интеграции цифровых инструментов и оборудования  в образовательные STEAM-продукты</div>
+      </div>
+    </div>
+
+    <span class="sec-label">Цифровые инструменты и платформы</span>
+    <div class="tile-grid">
+      <div class="tile"><div class="tile-tag">Программирование</div><h4>Python </h4><p>Анализ экспериментальных данных, построение графиков, статистическая обработка. Совмещение кода и текста отчёта в одном документе.</p></div>
+      <div class="tile"><div class="tile-tag">3D-моделирование</div><h4>Tinkercad / Fusion 360</h4><p>Проектирование экспериментальных установок и прототипов. Прямая интеграция с 3D-принтером для изготовления деталей.</p></div>
+      <div class="tile"><div class="tile-tag">Робототехника</div><h4>Arduino / micro:bit</h4><p>Создание датчиков и управляющих систем. Подход Maker от Lego Education для структурирования проектной документации.</p></div>
+      <div class="tile"><div class="tile-tag">Обработка данных</div><h4>Logger Pro / GeoGebra</h4><p>Профессиональная обработка результатов измерений: линейная аппроксимация, вычисление градиентов, анализ погрешностей.</p></div>
+      <div class="tile"><div class="tile-tag">Прототипирование</div><h4>Scratch</h4><p>Визуальное программирование и создание интерактивных симуляций физических и биологических процессов.</p></div>
+      <div class="tile"><div class="tile-tag">Презентация</div><h4>Canva / Figma / Genially</h4><p>Создание научных постеров, инфографики и интерактивных презентаций. Экспорт в форматы для конференций.</p></div>
+    </div>
+
+    <div class="algo-tile">
+      <div class="algo-label">Методика интеграции инструментов: пошаговый сценарий</div>
+      <ol class="algo-steps">
+        <li class="algo-step"><span class="algo-n">01</span><span class="algo-t">Определить цифровой инструмент исходя из цели этапа (<strong>измерение / моделирование / визуализация</strong>)</span></li>
+        <li class="algo-step"><span class="algo-n">02</span><span class="algo-t">Ознакомление: просмотр вводного туториала, выполнение базового упражнения</span></li>
+        <li class="algo-step"><span class="algo-n">03</span><span class="algo-t">Применение в рамках проектного задания с заполнением рабочего листа Maker</span></li>
+        <li class="algo-step"><span class="algo-n">04</span><span class="algo-t">Экспорт результатов и их интеграция в итоговый отчёт или презентацию</span></li>
+        <li class="algo-step"><span class="algo-n">05</span><span class="algo-t">Рефлексия: оценка эффективности инструмента для конкретной задачи</span></li>
+      </ol>
+    </div>
+
+    <div class="two-col">
+      <div class="info-tile"><div class="info-title">🔧 Рекомендуемое оборудование</div><ul><li>Наборы Arduino Uno / Nano с датчиками</li><li>micro:bit — для начального уровня</li><li>3D-принтер (FDM) для прототипирования</li><li>Датчики: температура, pH, влажность, CO₂</li><li>Цифровые микроскопы и веб-камеры</li><li>Наборы Lego Education Spike Prime</li></ul></div>
+      <div class="info-tile"><div class="info-title">🛡 Цифровая безопасность</div><ul><li>Использовать только лицензионный или Open Source ПО</li><li>Публиковать результаты с лицензией Creative Commons</li><li>Соблюдать правила обработки персональных данных</li><li>Резервное копирование данных проекта в облако</li><li>Проверка плагиата текстовых частей отчёта</li></ul></div>
+    </div>
+
+    <div class="ex-tile">
+      <div class="ex-label">Онлайн-симуляторы для экспериментов в области естествознания</div>
+      <ul class="ex-list">
+        <li class="ex-item">PhET Interactive Simulations (University of Colorado) — физика, химия, биология, науки о Земле</li>
+        <li class="ex-item">Labster — виртуальные лабораторные работы с реалистичной физикой</li>
+        <li class="ex-item">Fractal Lab / Silk — визуализация математических паттернов природы</li>
+        <li class="ex-item">Terrain.party — генерация и анализ рельефа местности</li>
+        <li class="ex-item">COMSOL Multiphysics (студенческая лицензия) — мультифизическое моделирование</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PANEL 5 -->
+  <div class="panel" id="p4" style="--pc:var(--c5);--pl:var(--c5l)">
+    <div class="panel-header" style="border-left-color:var(--c5)">
+      <div class="ph-icon" style="background:var(--c5l)">📝</div>
+      <div>
+        <div class="ph-num">05 / диагностический модуль</div>
+        <div class="ph-title">Диагностический модуль</div>
+        <div class="ph-aim">Цель: обеспечить инструментами оценки эффективности НИР, самоанализа студентов и педагогической рефлексии</div>
+      </div>
+    </div>
+
+    <span class="sec-label">Рубрика оценки исследовательского проекта</span>
+    <div class="table-wrap">
+      <table class="rubric">
+        <thead>
+          <tr><th>Критерий</th><th>1 — начальный</th><th>2 — базовый</th><th>3 — продвинутый</th><th>4 — экспертный</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>🔬 Научность</td><td>Тема выбрана, гипотеза отсутствует</td><td>Гипотеза есть, методика не обоснована</td><td>Чёткая гипотеза, переменные выделены</td><td>Погрешности оценены, выводы статистически подтверждены</td></tr>
+          <tr><td>🏗 Методология</td><td>План не представлен</td><td>Частичный план, этапы не связаны</td><td>Полный план с этапами и сроками</td><td>Детальный план, контрольные точки, управление рисками</td></tr>
+          <tr><td>🎨 Визуализация</td><td>Результаты описаны текстом</td><td>Базовые таблицы и графики</td><td>Качественные графики, инфографика</td><td>Интерактивная визуализация, авторский дизайн</td></tr>
+          <tr><td>🗣 Презентация</td><td>Чтение с листа, нет структуры</td><td>Есть структура, слабая аргументация</td><td>Чёткая логика, уверенное изложение</td><td>Убедительная защита, диалог с аудиторией</td></tr>
+          <tr><td>🤝 Командная работа</td><td>Распределения ролей нет</td><td>Роли есть, координация слабая</td><td>Чёткие роли, взаимопомощь</td><td>Синергетическая команда, рефлексия по итогам</td></tr>
+          <tr><td>💡 Оригинальность</td><td>Тема и метод стандартные</td><td>Попытки нестандартного подхода</td><td>Оригинальная интерпретация темы</td><td>Новый объект, метод или постановка задачи</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <span class="sec-label">Чек-лист самоанализа</span>
+    <ul class="checklist">
+      <li class="cl-item"><div class="cl-box" style="background:var(--c5l);color:var(--c5)">✓</div><span>Сформулирована чёткая проблема, вытекающая из реального противоречия?</span></li>
+      <li class="cl-item"><div class="cl-box" style="background:var(--c5l);color:var(--c5)">✓</div><span>Выдвинута проверяемая гипотеза с указанием независимой и зависимой переменных?</span></li>
+      <li class="cl-item"><div class="cl-box" style="background:var(--c5l);color:var(--c5)">✓</div><span>Выбраны и обоснованы методы сбора данных?</span></li>
+      <li class="cl-item"><div class="cl-box" style="background:var(--c5l);color:var(--c5)">✓</div><span>Данные собраны, зафиксированы и обработаны статистически?</span></li>
+      <li class="cl-item"><div class="cl-box" style="background:var(--c5l);color:var(--c5)">✓</div><span>Погрешности эксперимента оценены и проанализированы?</span></li>
+      <li class="cl-item"><div class="cl-box" style="background:var(--c5l);color:var(--c5)">✓</div><span>Результаты визуализированы (графики, таблицы, инфографика)?</span></li>
+      <li class="cl-item"><div class="cl-box" style="background:var(--c5l);color:var(--c5)">✓</div><span>Выводы сформулированы в соответствии с гипотезой?</span></li>
+      <li class="cl-item"><div class="cl-box" style="background:var(--c5l);color:var(--c5)">✓</div><span>Указаны ограничения исследования и перспективы продолжения работы?</span></li>
+      <li class="cl-item"><div class="cl-box" style="background:var(--c5l);color:var(--c5)">✓</div><span>Оформлены ссылки на использованные источники?</span></li>
+    </ul>
+
+    <div class="two-col">
+      <div class="info-tile"><div class="info-title">📱 Инструменты обратной связи</div><ul><li>Google Forms — анкеты входной / итоговой диагностики</li><li>Mentimeter — интерактивные опросы на защите</li><li>Padlet — совместная доска рефлексии</li><li>Moodle — тестирование в LMS вуза</li><li>Trello / Notion — управление проектом и портфолио</li></ul></div>
+      <div class="info-tile"><div class="info-title">📈 Методы валидации результатов</div><ul><li>Пред- и пост-тест по исследовательским умениям</li><li>Портфолио студента (накопительная система)</li><li>Рецензия внешнего эксперта / научного руководителя</li><li>Презентация на студенческой конференции</li></ul></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p><strong>БГПУ · Факультет естествознания</strong></p>
+  <p style="margin-top:6px">Методические рекомендации по организации научно-исследовательской работы студентов факультета естествознания БГПУ</p>
+  <p style="margin-top:4px;font-size:11px;opacity:.6">Разработано на основе материалов НЭБ eLibrary и опыта реализации STEAM-подхода в педагогических университетах</p>
+</footer>
+
+<script>
+const COLORS = ['var(--c1)','var(--c2)','var(--c3)','var(--c4)','var(--c5)'];
+const LIGHTS = ['var(--c1l)','var(--c2l)','var(--c3l)','var(--c4l)','var(--c5l)'];
+const tabs = document.querySelectorAll('.tab-btn');
+const panels = document.querySelectorAll('.panel');
+
+function show(i){
+  tabs.forEach((t,idx)=>{
+    t.classList.toggle('active', idx===i);
+    t.style.setProperty('--tc', COLORS[idx]);
+    t.style.setProperty('--tl', LIGHTS[idx]);
+  });
+  panels.forEach((p,idx)=>p.classList.toggle('active', idx===i));
+  document.querySelector('.tabs-wrap').scrollIntoView({behavior:'smooth',block:'start'});
+}
+// init
+tabs.forEach((t,i)=>{
+  t.style.setProperty('--tc', COLORS[i]);
+  t.style.setProperty('--tl', LIGHTS[i]);
+});
+</script>
+</body>
+</html>
